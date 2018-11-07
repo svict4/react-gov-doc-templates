@@ -17,13 +17,20 @@ export default class CoatOfArms extends React.Component {
       fontSize: "25px"
     };
 
+    const viewBox = {
+      minx: 0,
+      miny: 0,
+      width: 137,
+      height: 100
+    }
+
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         version="1.1"
         role="img"
-        viewBox="0 0 465 100"
+        viewBox={Object.values(viewBox).join(' ')}
         id="logo"
         className={className}
         {...attributeOptions}

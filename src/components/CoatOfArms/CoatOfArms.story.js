@@ -8,14 +8,14 @@ import CoatOfArms from "./";
 storiesOf("Coat of Arms", module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo)
-  .add("by itself", () => <CoatOfArms width={text("width", "400px")} />, {
+  .add("by itself", () => <CoatOfArms width={text("width", "175px")} />, {
     info: "Commonwealth Coat of Arms for the Commonwealth of Australia"
   })
   .add(
     "inline",
     () => (
       <CoatOfArms
-        width={text("width", "400px")}
+        width={text("width", "175px")}
         entityName={text("Entity Name", "Department of Social Services")}
         stripped={boolean('Stripped', false)}
         inline
@@ -31,7 +31,7 @@ storiesOf("Coat of Arms", module)
     "stacked",
     () => (
       <CoatOfArms
-        width={text("width", "400px")}
+        width={text("width", "175px")}
         entityName={text("Entity Name", "Department of Social Services")}
         stripped={boolean('Stripped', false)}
         stacked
@@ -47,7 +47,7 @@ storiesOf("Coat of Arms", module)
     "inverted, on dark",
     () => (
       <CoatOfArms
-        width={text("width", "400px")}
+        width={text("width", "175px")}
         entityName={text("Entity Name", "Department of Social Services")}
         stacked
       />
@@ -60,7 +60,7 @@ storiesOf("Coat of Arms", module)
     "co-brand",
     () => (
       <CoatOfArms
-        width={text("width", "400px")}
+        width={text("width", "175px")}
         entityName={text("Entity Name", "Department of Social Services")}
         stacked
       />
@@ -73,7 +73,7 @@ storiesOf("Coat of Arms", module)
     "initiative",
     () => (
       <CoatOfArms
-        width={text("width", "400px")}
+        width={text("width", "175px")}
         entityName={text("Entity Name", "Department of Social Services")}
         inline
       />

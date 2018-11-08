@@ -17,12 +17,12 @@ storiesOf("Coat of Arms", module)
       <CoatOfArms
         width={text("width", "175px")}
         entityName={text("Entity Name", "Department of Social Services")}
-        stripped={boolean('Stripped', false)}
+        stripped={boolean("Stripped", false)}
         inline
       />
     ),
     {
-      info:
+      info: 
         "text on the right of the Coat of Arms where 'Australian Government' appears above institution name"
     }
   )
@@ -33,7 +33,7 @@ storiesOf("Coat of Arms", module)
       <CoatOfArms
         width={text("width", "175px")}
         entityName={text("Entity Name", "Department of Social Services")}
-        stripped={boolean('Stripped', false)}
+        stripped={boolean("Stripped", false)}
         stacked
       />
     ),
@@ -66,7 +66,7 @@ storiesOf("Coat of Arms", module)
       />
     ),
     {
-      info: "inverted colors for dark backgrounds"
+      info: "Coat of Arms alongside an external logo"
     }
   )
   .add(
@@ -79,6 +79,6 @@ storiesOf("Coat of Arms", module)
       />
     ),
     {
-      info: "inverted colors for dark backgrounds"
+      info: "Longer text in place of Australian Government text"
     }
   );

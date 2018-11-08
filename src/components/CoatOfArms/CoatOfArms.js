@@ -2,6 +2,35 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export default class CoatOfArms extends React.Component {
+  state = {
+    viewBox: {
+      minx: 0,
+      miny: 0,
+      width: 137,
+      height: 100
+    }
+  };
+
+  componentDidMount() {
+    if (this.entityField) {
+      var entityBB = this.entityField.getBBox();
+      console.log(entityBB);
+      var newState = React.addons.update(this.state, {
+        viewBox: { width: {$set: 207 + entityBB.width} }
+      });
+      this.setState(newState);
+    }
+
+    // this.setState ({
+    //   viewBox: {
+    //     minx: 0,
+    //     miny: 0,
+    //     width: entityBB.width,
+    //     height: entityBB.height
+    //   }
+    // })
+  }
+
   render() {
     const {
       className,
@@ -17,20 +46,13 @@ export default class CoatOfArms extends React.Component {
       fontSize: "25px"
     };
 
-    const viewBox = {
-      minx: 0,
-      miny: 0,
-      width: 137,
-      height: 100
-    }
-
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         version="1.1"
         role="img"
-        viewBox={Object.values(viewBox).join(' ')}
+        viewBox={Object.values(this.state.viewBox).join(" ")}
         id="logo"
         className={className}
         {...attributeOptions}
@@ -245,7 +267,7 @@ export default class CoatOfArms extends React.Component {
             </g>
 
             <g id="entity" style={textStyle}>
-              <text x="145" y="88">
+              <text x="145" y="88" ref={ref => (this.entityField = ref)}>
                 {entityName}
               </text>
             </g>
@@ -269,8 +291,10 @@ CoatOfArms.propTypes = {
   entityName: PropTypes.string,
   /** entity text wrapped to size of Australian Government text */
   stripped: PropTypes.bool,
+  /** text appearing to the left (default) */
+  inline: PropTypes.bool,
   /** text appearing below logo */
-  inline: PropTypes.bool
+  stacked: PropTypes.bool
 };
 
 CoatOfArms.defaultProps = {

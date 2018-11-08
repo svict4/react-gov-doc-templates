@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import update from "immutability-helper";
 
 export default class CoatOfArms extends React.Component {
   state = {
@@ -11,24 +12,28 @@ export default class CoatOfArms extends React.Component {
     }
   };
 
-  componentDidMount() {
-    if (this.entityField) {
-      var entityBB = this.entityField.getBBox();
-      console.log(entityBB);
-      var newState = React.addons.update(this.state, {
-        viewBox: { width: {$set: 207 + entityBB.width} }
+  componentWillReceiveProps(nextProps) {
+    // FIXME: willrecieve will be deprecated, also use nextprops
+    console.log("willrecieveprops");
+    if (this.entityG) {
+      var entity = this.entityG.getBBox();
+      console.log(this.entityG.getBBox())
+      var newState = update(this.state, {
+        viewBox: { width: { $set: entity.x + entity.width } }
       });
       this.setState(newState);
     }
+  }
 
-    // this.setState ({
-    //   viewBox: {
-    //     minx: 0,
-    //     miny: 0,
-    //     width: entityBB.width,
-    //     height: entityBB.height
-    //   }
-    // })
+  componentDidMount() {
+    console.log("didmount");
+    if (this.entityG) {
+      var entity = this.entityG.getBBox();
+      var newState = update(this.state, {
+        viewBox: { width: { $set: entity.x + entity.width } }
+      });
+      this.setState(newState);
+    }
   }
 
   render() {
@@ -275,7 +280,6 @@ export default class CoatOfArms extends React.Component {
           </>
         )}
 
-        {/* TODO: if entity name */}
         {/* TODO: if entity function name */}
         {/* TODO: if stripped */}
         {/* TODO: if inline */}

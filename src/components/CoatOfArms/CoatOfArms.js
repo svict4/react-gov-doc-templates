@@ -56,11 +56,12 @@ export default class CoatOfArms extends React.Component {
         id="logo"
         className={className}
         {...attributeOptions}
+        ref={ref => (this.svg = ref)}
       >
         <title id="title">Commonwealth Coat of Arms</title>
         <desc id="desc">Commonwealth Coat of Arms</desc>
 
-        <g id="Crest">
+        <g id="Crest" ref={ref => (this.crestG = ref)}>
           <path d="M47.6,77.1c-0.1,0.1-0.2,0.3-0.3,0.3" />
           <path d="M50.6,53.5c0.3,0,0.6-0.3,0.6-0.6c0-0.4-0.3-0.6-0.6-0.6c-0.3,0-0.6,0.3-0.6,0.6C50,53.2,50.2,53.5,50.6,53.5L50.6,53.5z" />
           <path d="M79.8,26.8L79.8,26.8l-22.7,0v0h0l0,18.4c0,1.8,0.8,3.3,1.8,3.8l8.7,5.2c0.2,0.2,0.5,0.4,0.8,0.4c0.3,0,0.5-0.1,0.7-0.3    L78,49c1-0.5,1.8-2,1.8-3.8L79.8,26.8L79.8,26.8L79.8,26.8z M64.6,32.2h-2v-4.7h2V32.2L64.6,32.2z M63.2,33.8l0.3-0.3l-0.2-0.3    l0.4,0l0.2-0.4l0.2,0.4l0.4,0l-0.2,0.3l0.3,0.3l-0.4,0.1v0.4L63.9,34l-0.3,0.3v-0.4L63.2,33.8L63.2,33.8z M57.7,39.6v-4.5h2.4v4.5    H57.7L57.7,39.6z M58.1,33.2l0.4,0l0.2-0.4l0.2,0.4l0.4,0l-0.2,0.3l0.3,0.3L59,33.9v0.4L58.7,34l-0.3,0.3v-0.4L58,33.8l0.3-0.3    L58.1,33.2L58.1,33.2z M60.8,37.7l0.4,0l0.2-0.4l0.2,0.4l0.4,0L61.8,38l0.3,0.3l-0.4,0.1v0.4l-0.3-0.3l-0.3,0.3v-0.4l-0.4-0.1    L61,38L60.8,37.7L60.8,37.7z M62.4,34.1c0-0.1-0.2-0.2-0.2-0.2c-0.2,0-0.3,0.4-0.5,0.4c-0.1,0-0.2,0-0.2-0.1    c0-0.1,0.3-0.2,0.4-0.3c-1.5,0-1.5,0.7-1.7,0.7c-0.4,0,0.3-0.7,0.5-0.9c-0.3,0-0.5-0.4-0.8-0.6c0.2-0.2,0.2-0.1,0.4,0    c0-0.2,0.1-0.3,0.5-0.3c0.7,0,0.5,0.6,0.6,0.6c0.1,0,0-0.6,0.4-0.6c0.7,0,1.5,1.7,0.7,1.7C62.1,34.4,62.4,34.2,62.4,34.1    L62.4,34.1z M60.7,29.2l0.3-0.3l-0.2-0.3l0.4,0l0.2-0.4l0.2,0.4l0.4,0l-0.2,0.3l0.3,0.3l-0.4,0.1v0.4l-0.3-0.3l-0.3,0.3v-0.4    L60.7,29.2L60.7,29.2z M60.1,27.5v4.7h-2.4v-4.7H60.1L60.1,27.5z M64.6,51.7l-5.4-3.3c-0.9-0.6-1.4-1.7-1.5-3v-5.2h6.9V51.7    L64.6,51.7z M62.7,39.6v-4.5h2v4.5H62.7L62.7,39.6z M71.6,52.1l-2.5,1.5h0c-0.2,0.1-0.4,0.2-0.7,0.2c-0.3,0-0.5-0.1-0.7-0.2    l-2.5-1.5V40.3h6.4V52.1L71.6,52.1z M71.6,39.6h-6.4V27.5h6.4V39.6L71.6,39.6z M79.2,45.4c-0.1,1.3-0.6,2.4-1.5,3l-5.4,3.3V40.3    h6.9V45.4L79.2,45.4z M79.2,39.6h-6.9V27.5h6.9V39.6L79.2,39.6z" />
@@ -256,18 +257,18 @@ export default class CoatOfArms extends React.Component {
 
         {entityName && (
           <>
-            <g id="AusGov" style={textStyle}>
+            <g id="AusGov" style={textStyle} ref={ref => (this.ausgovG = ref)}>
               <text x="145" y="48">
                 Australian Government
               </text>
             </g>
 
-            <g id="Line">
-              <rect x="145" y="60" width="265" height="1.5" />
+            <g id="Line" style={textStyle} ref={ref => (this.lineG = ref)}>
+              <rect x="145" y="60" width="256" height="1.5" />
             </g>
 
-            <g id="entity" style={textStyle}>
-              <text x="145" y="88" ref={ref => (this.entityField = ref)}>
+            <g id="entity" style={textStyle} ref={ref => (this.entityG = ref)}>
+              <text x="145" y="88">
                 {entityName}
               </text>
             </g>

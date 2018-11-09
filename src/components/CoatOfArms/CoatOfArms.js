@@ -9,28 +9,30 @@ export default class CoatOfArms extends React.Component {
       miny: 0,
       width: 137,
       height: 100
-    }
+    },
+    dividerLineWidth: 256
   };
 
-  componentWillReceiveProps(nextProps) {
-    // FIXME: willrecieve will be deprecated, also use nextprops
-    console.log("willrecieveprops");
-    if (this.entityG) {
+  updateDividerLineWidth() {
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.entityG && (this.props !== prevProps)) {
       var entity = this.entityG.getBBox();
-      console.log(this.entityG.getBBox())
       var newState = update(this.state, {
-        viewBox: { width: { $set: entity.x + entity.width } }
+        viewBox: { width: { $set: entity.x + entity.width } },
+        dividerLineWidth: { $set: entity.width }
       });
       this.setState(newState);
     }
   }
 
   componentDidMount() {
-    console.log("didmount");
     if (this.entityG) {
       var entity = this.entityG.getBBox();
       var newState = update(this.state, {
-        viewBox: { width: { $set: entity.x + entity.width } }
+        viewBox: { width: { $set: entity.x + entity.width } },
+        dividerLineWidth: { $set: entity.width }
       });
       this.setState(newState);
     }
@@ -269,7 +271,7 @@ export default class CoatOfArms extends React.Component {
             </g>
 
             <g id="Line" style={textStyle} ref={ref => (this.lineG = ref)}>
-              <rect x="145" y="60" width="256" height="1.5" />
+              <rect x="145" y="60" width={this.state.dividerLineWidth} height="1.5" />
             </g>
 
             <g id="entity" style={textStyle} ref={ref => (this.entityG = ref)}>

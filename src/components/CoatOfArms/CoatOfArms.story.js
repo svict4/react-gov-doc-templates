@@ -1,12 +1,16 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withInfo } from "@storybook/addon-info";
-import { withKnobs, text, boolean } from "@storybook/addon-knobs";
+import { withKnobs, text, boolean, withKnobsOptions } from "@storybook/addon-knobs";
 
 import CoatOfArms from "./";
 
 storiesOf("Coat of Arms", module)
-  .addDecorator(withKnobs)
+  .addDecorator(
+    withKnobsOptions({
+      escapeHTML: false
+    })
+  )
   .addDecorator(withInfo)
   .add("by itself", () => <CoatOfArms width={text("width", "175px")} />, {
     info: "Commonwealth Coat of Arms for the Commonwealth of Australia"
@@ -22,7 +26,7 @@ storiesOf("Coat of Arms", module)
       />
     ),
     {
-      info: 
+      info:
         "text on the right of the Coat of Arms where 'Australian Government' appears above institution name"
     }
   )

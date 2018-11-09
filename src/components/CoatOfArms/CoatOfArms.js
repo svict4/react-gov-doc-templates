@@ -13,19 +13,42 @@ export default class CoatOfArms extends React.Component {
     dividerLineWidth: 256
   };
 
-  updateDividerLineWidth() {
-  }
+  default = {
+    viewBox: {
+      minx: 0,
+      miny: 0,
+      width: 137,
+      height: 100
+    },
+    dividerLineWidth: 256
+  };
 
   componentDidUpdate(prevProps) {
-    if (this.entityG && (this.props !== prevProps)) {
-      var entity = this.entityG.getBBox();
-      console.log(entity)
-      var newState = update(this.state, {
-        viewBox: { width: { $set: (entity.width > 256 ? entity.x  + entity.width : entity.x2) } },
-        dividerLineWidth: { $set: (entity.width > 256 ? entity.width : 256) }
-      });
-      this.setState(newState);
-      console.log(this.props.entityName)
+    if (this.props !== prevProps) {
+      if (this.entityG) {
+        var entity = this.entityG.getBBox();
+        this.setState(
+          update(this.state, {
+            viewBox: {
+              width: {
+                $set:
+                  entity.width > 256 ? entity.x + entity.width : entity.x + 256
+              }
+            },
+            dividerLineWidth: { $set: entity.width > 256 ? entity.width : 256 }
+          })
+        );
+      } else {
+        this.setState(
+          update(this.state, {
+            viewBox: {
+              width: {
+                $set: this.default.viewBox.width
+              }
+            }
+          })
+        );
+      }
     }
   }
 
@@ -33,7 +56,7 @@ export default class CoatOfArms extends React.Component {
     if (this.entityG) {
       var entity = this.entityG.getBBox();
       var newState = update(this.state, {
-        viewBox: { width: { $set: entity.x  + entity.width } },
+        viewBox: { width: { $set: entity.x + entity.width } },
         dividerLineWidth: { $set: entity.width }
       });
       this.setState(newState);
@@ -272,7 +295,12 @@ export default class CoatOfArms extends React.Component {
             </g>
 
             <g id="Line" style={textStyle} ref={ref => (this.lineG = ref)}>
-              <rect x="145" y="60" width={this.state.dividerLineWidth} height="1.5" />
+              <rect
+                x="145"
+                y="60"
+                width={this.state.dividerLineWidth}
+                height="1.5"
+              />
             </g>
 
             <g id="entity" style={textStyle} ref={ref => (this.entityG = ref)}>

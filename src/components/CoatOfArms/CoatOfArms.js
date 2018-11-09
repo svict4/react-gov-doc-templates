@@ -19,11 +19,13 @@ export default class CoatOfArms extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.entityG && (this.props !== prevProps)) {
       var entity = this.entityG.getBBox();
+      console.log(entity)
       var newState = update(this.state, {
-        viewBox: { width: { $set: entity.x + entity.width } },
-        dividerLineWidth: { $set: entity.width }
+        viewBox: { width: { $set: (entity.width > 256 ? entity.x  + entity.width : entity.x2) } },
+        dividerLineWidth: { $set: (entity.width > 256 ? entity.width : 256) }
       });
       this.setState(newState);
+      console.log(this.props.entityName)
     }
   }
 
@@ -31,13 +33,12 @@ export default class CoatOfArms extends React.Component {
     if (this.entityG) {
       var entity = this.entityG.getBBox();
       var newState = update(this.state, {
-        viewBox: { width: { $set: entity.x + entity.width } },
+        viewBox: { width: { $set: entity.x  + entity.width } },
         dividerLineWidth: { $set: entity.width }
       });
       this.setState(newState);
     }
   }
-
   render() {
     const {
       className,

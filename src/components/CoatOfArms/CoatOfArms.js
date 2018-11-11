@@ -10,7 +10,7 @@ export default class CoatOfArms extends React.Component {
       width: 137,
       height: 100
     },
-    dividerLineWidth: 256
+    dividerLineWidth: 206
   };
 
   default = {
@@ -20,7 +20,7 @@ export default class CoatOfArms extends React.Component {
       width: 137,
       height: 100
     },
-    dividerLineWidth: 256
+    dividerLineWidth: 206
   };
 
   componentDidUpdate(prevProps) {
@@ -32,10 +32,10 @@ export default class CoatOfArms extends React.Component {
             viewBox: {
               width: {
                 $set:
-                  entity.width > 256 ? entity.x + entity.width : entity.x + 256
+                  entity.width > this.default.dividerLineWidth ? entity.x + entity.width : entity.x + this.default.dividerLineWidth
               }
             },
-            dividerLineWidth: { $set: entity.width > 256 ? entity.width : 256 }
+            dividerLineWidth: { $set: entity.width > this.default.dividerLineWidth ? entity.width : this.default.dividerLineWidth }
           })
         );
       } else {
@@ -310,6 +310,7 @@ export default class CoatOfArms extends React.Component {
             </g>
 
             <g id="entity" style={entityStyle} ref={ref => (this.entityG = ref)}>
+              <text x="145" y="86.25">
                 {entityName}
               </text>
             </g>
@@ -317,6 +318,7 @@ export default class CoatOfArms extends React.Component {
         )}
 
         {/* TODO: if entity function name */}
+        {/* TODO: stripped/newline */}
         {/* TODO: bleed */}
         {/* TODO: if inline */}
         {/* TODO: inverted using filter: invert(100%) */}

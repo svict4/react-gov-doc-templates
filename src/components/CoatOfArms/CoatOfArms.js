@@ -68,14 +68,20 @@ export default class CoatOfArms extends React.Component {
       entityName,
       stripped,
       inline,
+      bleed,
       ...attributeOptions
     } = this.props;
 
-    const textStyle = {
+    const mainStyle = {
       fontFamily: "Times New Roman",
       fontWeight: "bold",
-      fontSize: "25px"
+      fontSize: "20px"
     };
+
+    const entityStyle = {
+      ...mainStyle,
+      fontSize: "19px"
+    }
 
     return (
       <svg
@@ -288,13 +294,13 @@ export default class CoatOfArms extends React.Component {
 
         {entityName && (
           <>
-            <g id="AusGov" style={textStyle} ref={ref => (this.ausgovG = ref)}>
+            <g id="AusGov" style={mainStyle} ref={ref => (this.ausgovG = ref)}>
               <text x="145" y="48">
                 Australian Government
               </text>
             </g>
 
-            <g id="Line" style={textStyle} ref={ref => (this.lineG = ref)}>
+            <g id="Line" ref={ref => (this.lineG = ref)}>
               <rect
                 x="145"
                 y="60"
@@ -303,8 +309,7 @@ export default class CoatOfArms extends React.Component {
               />
             </g>
 
-            <g id="entity" style={textStyle} ref={ref => (this.entityG = ref)}>
-              <text x="145" y="88">
+            <g id="entity" style={entityStyle} ref={ref => (this.entityG = ref)}>
                 {entityName}
               </text>
             </g>
@@ -312,7 +317,7 @@ export default class CoatOfArms extends React.Component {
         )}
 
         {/* TODO: if entity function name */}
-        {/* TODO: if stripped */}
+        {/* TODO: bleed */}
         {/* TODO: if inline */}
         {/* TODO: inverted using filter: invert(100%) */}
       </svg>

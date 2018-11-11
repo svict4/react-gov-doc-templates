@@ -75,7 +75,8 @@ export default class CoatOfArms extends React.Component {
     const mainStyle = {
       fontFamily: "Times New Roman",
       fontWeight: "bold",
-      fontSize: "20px"
+      fontSize: "20px",
+      letterSpacing: "-0.5px"
     };
 
     const entityStyle = {
